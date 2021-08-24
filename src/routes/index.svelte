@@ -1,3 +1,13 @@
+<script lang="ts">
+ const subtitles: string[] = [
+     "Театр, который мы заслужили",
+     "Андерграунд вашего сердца",
+     "Театральное завтра в мире искусства сегодня",
+ ];
+
+ const title: string = subtitles[Math.floor(Math.random() * subtitles.length)];
+</script>
+
 <section class="hero is-bold is-danger is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
@@ -5,7 +15,7 @@
         АсАбАлАр
       </h1>
       <p class="subtitle is-3">
-        Театр, который мы заслужили
+          {title}
       </p>
           <div class="columns">
             <div class="column is-offset-3 is-3 has-text-right">
