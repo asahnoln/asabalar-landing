@@ -1,8 +1,6 @@
 <script lang="ts">
-	interface Link {
-		href: string;
-		name: string;
-	}
+	import type { Link } from '$lib/types';
+	import List from '$lib/components/List.svelte';
 
 	const subtitles: string[] = [
 		'Театр, который мы заслужили',
@@ -20,10 +18,10 @@
 		{ href: 'https://vk.com/asabalar', name: 'ВКонтакте' }
 	];
 
-    const contacts: Link[] = [
-        {href: 'mailto:bas@asabalar.kz', name: 'Почта'},
-        {href: 'tel:+77059858859', name: 'Телефон'},
-    ];
+	const contacts: Link[] = [
+		{ href: 'mailto:bas@asabalar.kz', name: 'Почта' },
+		{ href: 'tel:+77059858859', name: 'Телефон' }
+	];
 </script>
 
 <section class="hero is-bold is-danger is-fullheight">
@@ -34,21 +32,13 @@
 				{title}
 			</p>
 			<div class="columns">
-				<div class="column is-offset-3 is-3 has-text-right">
+				<div class="column is-offset-3 is-3">
 					<h2 class="title is-4">Мы в соцсетях</h2>
-					<ul>
-						{#each links as { href, name }}
-							<li><a {href} target="_blank" class="">{name}</a></li>
-						{/each}
-					</ul>
+					<List {links} />
 				</div>
-				<div class="column is-3 has-text-left">
+				<div class="column is-3">
 					<h2 class="title is-4">Контакты</h2>
-					<ul>
-						{#each contacts as { href, name }}
-							<li><a {href} target="_blank">{name}</a></li>
-						{/each}
-					</ul>
+					<List links={contacts} />
 				</div>
 			</div>
 		</div>
