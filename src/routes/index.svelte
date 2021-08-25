@@ -12,15 +12,15 @@
 	const title: string = subtitles[Math.floor(Math.random() * subtitles.length)];
 
 	const links: Link[] = [
-		{ href: 'https://instagram.com/asabalar_theatre', name: 'Инстаграм' },
-		{ href: 'https://tiktok.com/asabalar', name: 'ТикТок' },
-		{ href: 'https://facebook.com/asabalar', name: 'Фейсбук' },
-		{ href: 'https://vk.com/asabalar', name: 'ВКонтакте' }
+		{ href: 'https://instagram.com/asabalar_theatre', name: 'Инстаграм', icon: 'logo-instagram' },
+		{ href: 'https://tiktok.com/@asabalar', name: 'ТикТок', icon: 'logo-tiktok' },
+		{ href: 'https://facebook.com/asabalar', name: 'Фейсбук', icon: 'logo-facebook' },
+		{ href: 'https://vk.com/asabalar_theatre', name: 'ВКонтакте', icon: 'logo-vk' }
 	];
 
 	const contacts: Link[] = [
-		{ href: 'mailto:bas@asabalar.kz', name: 'Почта' },
-		{ href: 'tel:+77059858859', name: 'Телефон' }
+		{ href: 'mailto:bas@asabalar.kz', name: 'Почта', icon: 'mail-outline' },
+		{ href: 'tel:+77059858859', name: 'Телефон', icon: 'call-outline' }
 	];
 </script>
 
