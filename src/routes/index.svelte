@@ -24,6 +24,10 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Главная — Театр АсАбАлАр</title>
+</svelte:head>
+
 <section class="hero is-bold is-danger is-fullheight">
 	<div class="hero-body">
 		<div class="container has-text-centered">
