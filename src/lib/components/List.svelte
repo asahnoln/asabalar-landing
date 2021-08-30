@@ -11,7 +11,7 @@
 				<ion-icon name={icon} />
 			</span>
 			<span>
-				<a {href} target="_blank" class="">{name}</a>
+				<a {href} target="_blank" rel="noreferrer">{name}</a>
 			</span>
 		</li>
 	{/each}
