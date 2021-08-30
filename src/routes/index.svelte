@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>Главная — Театр АсАбАлАр</title>
+	<title>Театр АсАбАлАр</title>
 </svelte:head>
 
 <section class="hero is-bold is-danger is-fullheight">
