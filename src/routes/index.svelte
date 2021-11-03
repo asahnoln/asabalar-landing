@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Link } from '$lib/types';
 	import List from '$lib/components/List.svelte';
+	import BuyForm from '$lib/components/BuyForm.svelte';
 
 	const subtitles: string[] = [
 		'Театр, который мы заслужили',
@@ -28,13 +29,22 @@
 	<title>Театр АсАбАлАр</title>
 </svelte:head>
 
-<section class="hero is-bold is-danger is-fullheight">
+<section class="hero is-bold is-danger">
 	<div class="hero-body">
 		<div class="container has-text-centered">
 			<h1 class="title is-1">АсАбАлАр</h1>
 			<p class="subtitle is-3">
 				{title}
 			</p>
+		</div>
+	</div>
+</section>
+
+<BuyForm />
+
+<section class="hero is-bold is-danger">
+	<div class="hero-body">
+		<div class="container has-text-centered">
 			<div class="columns">
 				<div class="column is-offset-3 is-3">
 					<h2 class="title is-4">Мы в соцсетях</h2>
