@@ -8,14 +8,34 @@
 	];
 
 	const namePlaceholder: string = nameExamples[Math.floor(Math.random() * nameExamples.length)];
-	const phonePlaceholder = '+7 (111) 222-33-44';
-	const emailPlaceholder = 'email@example.com';
+	const buyUrl = 'https://ticketon.kz';
 
-	async function handleSubmit(e) {
-		console.log(e);
-		let result = await fetch('/buy', { method: 'POST' });
-		console.log(result);
-		window.open('https://ticketon.kz', '_blank');
+	let showForm = true;
+	let sending = false;
+	let timeLeftToRedirect = 5;
+
+	async function handleSubmit(e: SubmitEvent): Promise<void> {
+		sending = true;
+
+		const res: Response = await fetch('/buy', { method: 'POST' });
+		const answer = await res.json();
+
+		if (res.ok && answer.success) {
+			showForm = false;
+
+			redirectTimer();
+		}
+	}
+
+	function redirectTimer(): void {
+		const timer = setInterval(() => {
+			timeLeftToRedirect -= 1;
+
+			if (timeLeftToRedirect <= 0) {
+				window.open(buyUrl, '_blank');
+				clearInterval(timer);
+			}
+		}, 1000);
 	}
 </script>
 
@@ -28,62 +48,83 @@
 						Купить&nbsp;билет на&nbsp;&laquo;Сеанс&raquo;
 					</h2>
 
-					<form on:submit|preventDefault={handleSubmit} method="POST" action="/buy">
-						<div class="field">
-							<label class="label" for="name">Имя</label>
-							<div class="control has-icons-left">
-								<input
-									class="input"
-									id="name"
-									name="name"
-									type="text"
-									placeholder={namePlaceholder}
-									required
-								/>
-								<span class="icon is-small is-left">
-									<ion-icon name="person" />
-								</span>
+					{#if !showForm}
+						<article class="message is-success">
+							<div class="message-body">
+								{#if timeLeftToRedirect > 0}
+									Вы будете переведены на страницу покупки через {timeLeftToRedirect}.
+								{:else}
+									Если перенаправления не произошло, пройдите по <a href={buyUrl} target="_blank"
+										>этой ссылке</a
+									>.
+								{/if}
 							</div>
-							<p class="help">Обязательное поле</p>
-						</div>
-						<div class="field">
-							<label class="label" for="phone">Телефон</label>
-							<div class="control has-icons-left">
-								<input
-									class="input"
-									id="phone"
-									name="phone"
-									type="phone"
-									placeholder={phonePlaceholder}
-									required
-								/>
-								<span class="icon is-small is-left">
-									<ion-icon name="call" />
-								</span>
+						</article>
+					{/if}
+
+					{#if showForm}
+						<form on:submit|preventDefault={handleSubmit} method="POST" action="/buy">
+							<div class="field">
+								<label class="label" for="name">Имя</label>
+								<div class="control has-icons-left">
+									<input
+										class="input"
+										id="name"
+										name="name"
+										type="text"
+										placeholder={namePlaceholder}
+										disabled={sending}
+										required
+									/>
+									<span class="icon is-small is-left">
+										<ion-icon name="person" />
+									</span>
+								</div>
+								<p class="help">Обязательное поле</p>
 							</div>
-							<p class="help">Обязательное поле</p>
-						</div>
-						<div class="field">
-							<label class="label" for="email">Электронная почта</label>
-							<div class="control has-icons-left">
-								<input
-									class="input"
-									id="email"
-									name="email"
-									type="email"
-									placeholder={emailPlaceholder}
-								/>
-								<span class="icon is-small is-left">
-									<ion-icon name="mail" />
-								</span>
+							<div class="field">
+								<label class="label" for="phone">Телефон</label>
+								<div class="control has-icons-left">
+									<input
+										class="input"
+										id="phone"
+										name="phone"
+										type="phone"
+										placeholder="+7 (111) 222-33-44"
+										disabled={sending}
+										required
+									/>
+									<span class="icon is-small is-left">
+										<ion-icon name="call" />
+									</span>
+								</div>
+								<p class="help">Обязательное поле</p>
 							</div>
-						</div>
-						<div class="field has-text-centered">
-							<div class="control">
-								<button class="button is-success">Купить билет</button>
+							<div class="field">
+								<label class="label" for="email">Электронная почта</label>
+								<div class="control has-icons-left">
+									<input
+										class="input"
+										id="email"
+										name="email"
+										type="email"
+										placeholder="email@example.com"
+										disabled={sending}
+									/>
+									<span class="icon is-small is-left">
+										<ion-icon name="mail" />
+									</span>
+								</div>
 							</div>
-						</div>
-					</form>
+							<div class="field has-text-centered">
+								<div class="control">
+									<button class="button is-success" disabled={sending} class:is-loading={sending}
+										>Купить билет</button
+									>
+								</div>
+							</div>
+						</form>
+					{/if}
 				</div>
 			</div>
 		</div>
