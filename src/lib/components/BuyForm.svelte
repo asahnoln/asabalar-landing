@@ -8,7 +8,7 @@
 	];
 
 	const namePlaceholder: string = nameExamples[Math.floor(Math.random() * nameExamples.length)];
-	const buyUrl = 'https://ticketon.kz';
+	const buyUrl = 'https://ticketon.kz/event/seans';
 
 	let showForm = true;
 	let sending = false;
@@ -44,9 +44,7 @@
 		<div class="container has-text-left">
 			<div class="columns">
 				<div class="column is-4 is-offset-4">
-					<h2 class="title is-2 has-text-centered">
-						Купить&nbsp;билет на&nbsp;&laquo;Сеанс&raquo;
-					</h2>
+					<h2 class="title is-2 has-text-centered">Купить билет на&nbsp;&laquo;Сеанс&raquo;</h2>
 
 					{#if !showForm}
 						<article class="message is-success">
